@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import KEYS from "../Config";
+import CardsLayout from "./CardsLayout";
 
 function MovieCards() {
   const [movies, setMovies] = useState([]);
@@ -28,9 +29,9 @@ function MovieCards() {
       {!loader ? (
         movies.map((movie, i) => {
           return (
-            <div key={i}>
-              <p>{movie.title}</p>
-            </div>
+            <>
+              <CardsLayout movie={movie} i={i} />
+            </>
           );
         })
       ) : (

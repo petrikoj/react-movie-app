@@ -1,14 +1,16 @@
 import React from "react";
+import { Container, Image, Text } from "@chakra-ui/react";
 
-const CardsLayout = ({ movie, i }) => {
+const CardsLayout = ({ movie }) => {
   return (
-    <div key={i}>
-      <img
+    <Container>
+      <Image
+        borderRadius={"lg"}
         src={`https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
         alt=""
       />
-      <p>{movie.title}</p>
-    </div>
+      <Text>{movie.title}</Text>
+    </Container>
   );
 };
 

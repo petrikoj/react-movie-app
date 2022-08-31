@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import KEYS from "../Config";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import CardsLayout from "./CardsLayout";
 
 function MovieCards() {
@@ -23,22 +24,24 @@ function MovieCards() {
   }, []);
 
   return (
-    <div>
-      {console.log(movies)}
-      <h2>Currently playing:</h2>
-      {!loader ? (
-        movies.map((movie, i) => {
-          return (
-            <>
-              <CardsLayout movie={movie} i={i} />
-            </>
-          );
-        })
-      ) : (
-        <p>loading ...</p>
-      )}{" "}
-      {error && <p>{error}</p>}
-    </div>
+    <Box>
+      <SimpleGrid columns={[1, null, 3, 4, 5]} spacing={"4"}>
+        {console.log(movies)}
+        {!loader ? (
+          movies.map((movie, id) => {
+            return (
+              <Box key={id}>
+                {/* To do: Find a way to integrate key/id into CardsLayout */}
+                <CardsLayout movie={movie} />
+              </Box>
+            );
+          })
+        ) : (
+          <p>loading ...</p>
+        )}{" "}
+        {error && <p>{error}</p>}
+      </SimpleGrid>
+    </Box>
   );
 }
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import KEYS from "../Config";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid, Spinner } from "@chakra-ui/react";
 import CardsLayout from "./CardsLayout";
+// import "../App.css";
 
 function MovieCards() {
   const [movies, setMovies] = useState([]);
@@ -24,8 +25,8 @@ function MovieCards() {
   }, []);
 
   return (
-    <Box>
-      <SimpleGrid columns={[1, null, 3, 4, 5]} spacing={"4"}>
+    <Box mx={"10"} mt={"44"}>
+      <SimpleGrid columns={[1, 2, 3, 4, 5]} spacingX={"4"} spacingY={"8"}>
         {console.log(movies)}
         {!loader ? (
           movies.map((movie, id) => {
@@ -37,7 +38,12 @@ function MovieCards() {
             );
           })
         ) : (
-          <p>loading ...</p>
+          <Spinner
+            color={"purple.200"}
+            emptyColor={"yellow.100"}
+            size={"xl"}
+            speed={"0.7s"}
+          />
         )}{" "}
         {error && <p>{error}</p>}
       </SimpleGrid>

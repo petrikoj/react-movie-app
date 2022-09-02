@@ -1,10 +1,24 @@
 import "./App.css";
 import ViewHome from "./views/ViewHome";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ViewLogin from "./views/ViewLogin";
+import ViewDetails from "./views/ViewDetails";
+import { Route, Routes } from "react-router-dom";
+import { SimpleGrid } from "@chakra-ui/react";
 
 function App() {
   return (
     <div className="App">
-      <ViewHome />
+      <SimpleGrid columns={"1"}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<ViewHome />} />
+          <Route path="/login" element={<ViewLogin />} />
+          <Route path="/movie/*" element={<ViewDetails />} />
+        </Routes>
+        <Footer />
+      </SimpleGrid>
     </div>
   );
 }

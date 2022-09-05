@@ -3,7 +3,7 @@ import { Box, Text, VStack } from "@chakra-ui/react";
 import { WarningIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
-function NoMatch() {
+function ViewNoMatch() {
   let redirectHome = useNavigate();
   useEffect(() => {
     setTimeout(() => {
@@ -25,4 +25,4 @@ function NoMatch() {
   );
 }
 
-export default NoMatch;
+export default ViewNoMatch;

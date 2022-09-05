@@ -1,10 +1,10 @@
 import React from "react";
 import PasswordInput from "../components/PasswordInput";
-import { Text, VStack } from "@chakra-ui/react";
+import { Container, Text, VStack } from "@chakra-ui/react";
 
 function viewLogin() {
   return (
-    <>
+    <Container mt={"16"} mb={"80"}>
       <VStack>
         <Text
           as={"h4"}
@@ -17,7 +17,7 @@ function viewLogin() {
         </Text>
         <PasswordInput />
       </VStack>
-    </>
+    </Container>
   );
 }
 

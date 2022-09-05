@@ -39,7 +39,7 @@ function MovieCards() {
           })
         ) : (
           <Spinner
-            color={"purple.200"}
+            color={"orange.200"}
             emptyColor={"yellow.100"}
             size={"xl"}
             speed={"0.7s"}

@@ -1,25 +1,22 @@
-import { useEffect, useState } from "react";
-import MovieCards from "../components/MovieCards";
+import { useState, useEffect } from "react";
 
-function useFetch(url) {
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(false);
-
-  const fetchData = async () => {
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const getData = async () => {
     try {
       const response = await fetch(url);
       const result = await response.json();
-      setMovies(result);
+      setData(result.results);
+      setLoading(false);
     } catch (error) {
       setError(error);
     }
   };
-
-  //   useEffect(() => {
-  //     fetchData();
-  //   }, []);
-
-  return { movies, error, fetchData };
-}
-
+  useEffect(() => {
+    getData();
+  }, [url]);
+  return { data, error, loading };
+};
 export default useFetch;

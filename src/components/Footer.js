@@ -11,7 +11,7 @@ const Footer = () => {
       mt={"20"}
       p={"2.5"}
       pos={"sticky"}
-      bgGradient={"linear(to-bl, orange.300, orange.200)"}
+      bgGradient={"linear(to-tl, pink.200, red.300)"}
     >
       This is my footer
     </Flex>

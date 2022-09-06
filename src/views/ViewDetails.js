@@ -6,7 +6,13 @@ const ViewDetails = (movie) => {
   const location = useLocation();
   console.log("console.log ->", location);
   return (
-    <Container mt={"32"}>
+    <Container
+      mt={"32"}
+      pt={"2"}
+      borderWidth={"thin"}
+      borderColor={"blackAlpha.800"}
+      borderRadius={"lg"}
+    >
       <VStack>
         <Text as={"header"} fontSize={"3xl"} color={"blackAlpha.800"}>
           {location.state.title}

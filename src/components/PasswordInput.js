@@ -27,33 +27,33 @@ function PasswordInput() {
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
-              color="orange.200"
+              color="red.200"
               children={<EmailIcon />}
             />
             <Input
               isDisabled={isLoading ? true : false}
-              borderColor={"orange.200"}
+              borderColor={"red.200"}
               width={"80"}
               type="email"
               placeholder="E-Mail"
-              focusBorderColor="orange.300"
+              focusBorderColor="teal.300"
             />
           </InputGroup>
           <InputGroup>
             <Input
               isDisabled={isLoading ? true : false}
               type={show ? "text" : "password"}
-              borderColor={"orange.200"}
+              borderColor={"red.200"}
               width={"80"}
               placeholder="Password"
-              focusBorderColor="orange.300"
+              focusBorderColor="teal.300"
             />
             <InputLeftElement>
               <Button bg={"none"} variant={"unstyled"} onClick={handleShow}>
                 {show ? (
-                  <ViewIcon color={"orange.200"} />
+                  <ViewIcon color={"red.200"} />
                 ) : (
-                  <ViewOffIcon color={"orange.200"} />
+                  <ViewOffIcon color={"red.200"} />
                 )}
               </Button>
             </InputLeftElement>
@@ -62,8 +62,8 @@ function PasswordInput() {
             onClick={handleLogin}
             isLoading={isLoading ? true : false}
             variant={"solid"}
-            colorScheme={"orange"}
-            bg={"orange.200"}
+            colorScheme={"teal"}
+            bg={"red.200"}
             size={"sm"}
             shadow={"sm"}
           >

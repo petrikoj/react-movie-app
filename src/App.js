@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import ViewLogin from "./views/ViewLogin";
 import ViewDetails from "./views/ViewDetails";
 import ViewNoMatch from "./views/ViewNoMatch";
+import ViewSearchResults from "./views/ViewSearchResults";
 import { Route, Routes } from "react-router-dom";
 import { SimpleGrid } from "@chakra-ui/react";
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<ViewHome />} />
           <Route path="/login" element={<ViewLogin />} />
           <Route path="/movie/*" element={<ViewDetails />} />
+          <Route path="/search/results/*" element={<ViewSearchResults />} />
           <Route path="*" element={<ViewNoMatch />} />
         </Routes>
         <Footer />

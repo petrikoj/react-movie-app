@@ -11,7 +11,7 @@ const Navbar = () => {
       position={"fixed"}
       align={"center"}
       justify={"space-evenly"}
-      bgGradient={"linear(to-br, orange.200, orange.300)"}
+      bgGradient={"linear(to-br, pink.200, red.300)"}
       h={"16"}
       w={"100%"}
       px={"2"}

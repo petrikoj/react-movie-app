@@ -4,7 +4,7 @@ import { Container, Text, VStack } from "@chakra-ui/react";
 
 function viewLogin() {
   return (
-    <Container mt={"16"} mb={"80"}>
+    <Container mt={20} mb={"60"}>
       <VStack>
         <Text
           as={"h4"}

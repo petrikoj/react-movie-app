@@ -17,8 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<ViewHome />} />
           <Route path="/login" element={<ViewLogin />} />
-          <Route path="/movie/*" element={<ViewDetails />} />
-          <Route path="/search/results/*" element={<ViewSearchResults />} />
+          <Route path="/movie/:title" element={<ViewDetails />} />
+          <Route path="/search/:input" element={<ViewSearchResults />} />
           <Route path="*" element={<ViewNoMatch />} />
         </Routes>
         <Footer />

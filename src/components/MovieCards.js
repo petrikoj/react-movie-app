@@ -15,7 +15,7 @@ const MovieCards = ({ movies }) => {
       pb={"4"}
       boxShadow={"sm"}
     >
-      <SimpleGrid columns={[1, 2, 3, 4, 5]} spacingX={"4"} spacingY={"8"}>
+      <SimpleGrid columns={[1, 2, 3, 4, 5, 6]} spacingX={"4"} spacingY={"8"}>
         {movies.map((movie, id) => {
           return (
             <Box key={id}>
@@ -24,7 +24,6 @@ const MovieCards = ({ movies }) => {
             </Box>
           );
         })}
-        ;
       </SimpleGrid>
     </Box>
   );

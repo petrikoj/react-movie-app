@@ -1,11 +1,13 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Image, Text, VStack } from "@chakra-ui/react";
+import ViewNoMatch from "./ViewNoMatch";
 
-const ViewDetails = (movie) => {
+const ViewDetails = () => {
   const location = useLocation();
-  console.log("console.log ->", location);
-  return (
+  console.log("Logging the location -->", location);
+
+  return location.state !== null ? (
     <Container
       mt={"32"}
       pt={"2"}
@@ -36,6 +38,8 @@ const ViewDetails = (movie) => {
         </Text>
       </VStack>
     </Container>
+  ) : (
+    <ViewNoMatch />
   );
 };
 

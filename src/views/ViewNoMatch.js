@@ -8,7 +8,7 @@ function ViewNoMatch() {
   useEffect(() => {
     setTimeout(() => {
       redirectHome("/");
-    }, 2500);
+    }, 2000);
   }, [redirectHome]);
   return (
     <Box mt={"36"} mb={"80"}>

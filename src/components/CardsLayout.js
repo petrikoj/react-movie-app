@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 
 const CardsLayout = ({ movie }) => {
   const movieTitle = movie.title;
-  const newTitle = movieTitle.replace(/\s/g, "-");
+  const newTitle = movieTitle
+    .replace(/\s/g, "-")
+    .replace(":", "")
+    .toLowerCase();
   return (
     <Container>
       <VStack>
-        <Link to={`/movie/${newTitle.toLowerCase()}`} state={movie}>
+        <Link to={`/movie/${newTitle}`} state={movie}>
           <Image
             border={"1px"}
             borderRadius={"lg"}

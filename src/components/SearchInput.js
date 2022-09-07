@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import {
-  InputGroup,
-  Input,
-  Button,
-  InputRightElement,
-  Stack,
-} from "@chakra-ui/react";
+import { InputGroup, Input, InputRightElement, Stack } from "@chakra-ui/react";
 import "../App.css";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
-import KEYS from "../Config";
 
 const SearchInput = () => {
   const [input, setInput] = useState("");
@@ -22,7 +14,7 @@ const SearchInput = () => {
       <InputGroup>
         <Input
           className={"search-input"}
-          type={"search"}
+          type={"text"}
           value={input}
           onChange={handleChange}
           w={"80"}
@@ -35,9 +27,12 @@ const SearchInput = () => {
           bg={"whiteAlpha.100"}
         />
         <InputRightElement>
-          <Button size={"md"} variant={"unstyled"}>
+          <Link
+            to={`/search/${input.toLowerCase().replace("-")}`}
+            state={{ input: input }}
+          >
             <SearchIcon color={"blackAlpha.800"} />
-          </Button>
+          </Link>
         </InputRightElement>
       </InputGroup>
     </Stack>

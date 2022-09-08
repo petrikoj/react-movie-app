@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
+  const [totalPages, setTotalPages] = useState(null);
+  const [totalResults, setTotalResults] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const getData = async () => {
@@ -11,6 +13,8 @@ const useFetch = (url) => {
       const result = await response.json();
       console.log("result", result);
       setData(result.results);
+      setTotalPages(result.total_pages);
+      setTotalResults(result.total_results);
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -19,6 +23,6 @@ const useFetch = (url) => {
   useEffect(() => {
     getData();
   }, [url]);
-  return { data, error, loading };
+  return { data, totalPages, totalResults, error, loading };
 };
 export default useFetch;

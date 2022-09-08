@@ -13,7 +13,9 @@ const ViewSearchResults = () => {
     loading,
     error,
   } = useFetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${KEYS}&query=${location.state.input}`
+    `https://api.themoviedb.org/3/search/movie?api_key=${KEYS}&query=${
+      location.state.input
+    }&page=${1}`
   );
   return loading ? (
     <Spinner

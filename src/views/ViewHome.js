@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import MovieCards from "../components/MovieCards";
 import { Text, Spinner } from "@chakra-ui/react";
 import KEYS from "../Config";
 import useFetch from "../hooks/useFetch";
+import Pagination from "../components/Pagination";
 
 function ViewHome() {
+  const [currentPage, setCurrentPage] = useState(1);
   const {
     data: movies,
+    totalPages,
+    totalResults,
     loading,
     error,
   } = useFetch(
-    `https://api.themoviedb.org/3/movie/now_playing?api_key=${KEYS}&region=DE`
+    `https://api.themoviedb.org/3/movie/now_playing?api_key=${KEYS}&region=DE&page=${currentPage}`
   );
   return (
     <>
@@ -23,10 +27,13 @@ function ViewHome() {
         textTransform={"capitalize"}
         letterSpacing={"wide"}
       >
-        Currently Playing in German Theaters:
+        Movies Currently Playing in German Theaters ({totalResults}):
       </Text>
       {!loading ? (
-        <MovieCards movies={movies} />
+        <>
+          <MovieCards movies={movies} />
+          <Pagination totalPages={totalPages} />
+        </>
       ) : (
         <Spinner
           color={"red.200"}

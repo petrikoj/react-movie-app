@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Box, HStack } from "@chakra-ui/react";
+import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
 
-const Pagination = ({ totalPages }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-
+const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   function goToNextPage() {
     setCurrentPage((currentPage) => currentPage + 1);
   }
@@ -13,18 +12,22 @@ const Pagination = ({ totalPages }) => {
   }
 
   return (
-    <Box>
+    <Box mt={"4"}>
       <HStack>
         {currentPage === 1 ? (
           <Button isDisabled />
         ) : (
-          <Button onClick={goToPreviousPage}>prev</Button>
+          <Button onClick={goToPreviousPage}>
+            <ArrowBackIcon />
+          </Button>
         )}
         <Button>
           <span>{currentPage}</span>
         </Button>
         {currentPage !== totalPages && (
-          <Button onClick={goToNextPage}>next</Button>
+          <Button onClick={goToNextPage}>
+            <ArrowForwardIcon />
+          </Button>
         )}
       </HStack>
     </Box>

@@ -16,23 +16,28 @@ function ViewHome() {
   } = useFetch(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${KEYS}&region=DE&page=${currentPage}`
   );
+
   return (
     <>
-      <Text
-        as={"h2"}
-        fontSize={"2xl"}
-        mt={"32"}
-        fontWeight={"semibold"}
-        textAlign={"center"}
-        textTransform={"capitalize"}
-        letterSpacing={"wide"}
-      >
-        Movies Currently Playing in German Theaters ({totalResults}):
-      </Text>
       {!loading ? (
         <>
+          <Text
+            as={"h2"}
+            fontSize={"2xl"}
+            mt={"32"}
+            fontWeight={"semibold"}
+            textAlign={"center"}
+            textTransform={"capitalize"}
+            letterSpacing={"wide"}
+          >
+            Movies Currently Playing in German Theaters ({totalResults}):
+          </Text>
           <MovieCards movies={movies} />
-          <Pagination totalPages={totalPages} />
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </>
       ) : (
         <Spinner
@@ -40,9 +45,11 @@ function ViewHome() {
           emptyColor={"pink.50"}
           size={"xl"}
           speed={"0.7s"}
+          mt={"56"}
+          mb={"96"}
         />
       )}
-      {error && <p>{error}</p>}
+      {error && <Text>{error}</Text>}
     </>
   );
 }

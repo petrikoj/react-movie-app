@@ -14,6 +14,7 @@ const MovieCards = ({ movies }) => {
       pt={"4"}
       pb={"4"}
       boxShadow={"sm"}
+      // bgGradient={"radial(whiteAlpha.50, red.100)"}
     >
       <SimpleGrid columns={[1, 2, 3, 4, 5, 6]} spacingX={"4"} spacingY={"8"}>
         {movies.map((movie, id) => {

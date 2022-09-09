@@ -15,17 +15,25 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
     <Box mt={"4"}>
       <HStack>
         {currentPage === 1 ? (
-          <Button isDisabled />
+          <Button variant={"ghost"} isDisabled />
         ) : (
-          <Button onClick={goToPreviousPage}>
+          <Button
+            onClick={goToPreviousPage}
+            variant={"ghost"}
+            colorScheme={"blackAlpha"}
+          >
             <ArrowBackIcon />
           </Button>
         )}
-        <Button>
-          <span>{currentPage}</span>
-        </Button>
+        <Box>
+          {currentPage}/{totalPages}
+        </Box>
         {currentPage !== totalPages && (
-          <Button onClick={goToNextPage}>
+          <Button
+            onClick={goToNextPage}
+            variant={"ghost"}
+            colorScheme={"blackAlpha"}
+          >
             <ArrowForwardIcon />
           </Button>
         )}

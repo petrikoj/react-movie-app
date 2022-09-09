@@ -1,11 +1,13 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Container, Image, Text, VStack } from "@chakra-ui/react";
+import { Container, Image, Text, Stack, VStack, Badge } from "@chakra-ui/react";
 import ViewNoMatch from "./ViewNoMatch";
+import { DateConverter } from "../components/Helpers";
 
 const ViewDetails = () => {
   const location = useLocation();
   console.log("Logging the location -->", location);
+  const releaseDate = DateConverter(location.state.release_date);
 
   return location.state !== null ? (
     <Container
@@ -26,6 +28,15 @@ const ViewDetails = () => {
           borderRadius={"lg"}
           boxShadow={"md"}
         />
+        <Stack direction={"row"}>
+          <Badge variant={"solid"} colorScheme={"teal"}>
+            {releaseDate}
+          </Badge>
+          <Badge variant={"solid"} colorScheme={"yellow"}>
+            {location.state.original_language}
+          </Badge>
+        </Stack>
+
         <Text
           as={"section"}
           fontFamily={"IBM Plex Sans"}

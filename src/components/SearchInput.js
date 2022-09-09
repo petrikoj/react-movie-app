@@ -3,11 +3,13 @@ import { InputGroup, Input, InputRightElement, Stack } from "@chakra-ui/react";
 import "../App.css";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+import { SpaceReplacer } from "./Helpers";
 
 const SearchInput = () => {
   const [input, setInput] = useState("");
   const handleChange = (e) => setInput(e.target.value);
   console.log(input);
+  const formattedInput = SpaceReplacer(input);
 
   return (
     <Stack>
@@ -27,10 +29,7 @@ const SearchInput = () => {
           bg={"whiteAlpha.100"}
         />
         <InputRightElement>
-          <Link
-            to={`/search/${input.toLowerCase().replace("-")}`}
-            state={{ input: input }}
-          >
+          <Link to={`/search/${formattedInput}`} state={{ input: input }}>
             <SearchIcon color={"blackAlpha.800"} />
           </Link>
         </InputRightElement>

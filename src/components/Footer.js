@@ -21,7 +21,11 @@ const Footer = () => {
           <Text textAlign={"center"} fontFamily={"mono"} fontSize={"medium"}>
             Data provided by:
           </Text>
-          <a href={"https://www.themoviedb.org/"} target={"_blank"}>
+          <a
+            href={"https://www.themoviedb.org/"}
+            target={"_blank"}
+            rel={"noreferrer"}
+          >
             <Image
               w={"40"}
               h={"auto"}
@@ -42,7 +46,11 @@ const Footer = () => {
         </HStack>
       </Box>
       <Box>
-        <a href={"https://github.com/petrikoj"} target={"_blank"}>
+        <a
+          href={"https://github.com/petrikoj"}
+          target={"_blank"}
+          rel={"noreferrer"}
+        >
           <AiFillGithub size={"44"} />
         </a>
       </Box>

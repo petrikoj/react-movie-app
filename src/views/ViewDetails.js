@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { Container, Image, Text, Stack, VStack, Badge } from "@chakra-ui/react";
+import {
+  Container,
+  Image,
+  Text,
+  Stack,
+  VStack,
+  Badge,
+  Button,
+} from "@chakra-ui/react";
+import { ChatIcon } from "@chakra-ui/icons";
 import ViewNoMatch from "./ViewNoMatch";
 import { DateConverter } from "../components/Helpers";
+import CommentSection from "../components/CommentSection";
+import { AuthContext } from "../context/AuthContext";
 
 const ViewDetails = () => {
+  const { user } = useContext(AuthContext);
   const location = useLocation();
   console.log("Logging the location -->", location);
   const releaseDate = DateConverter(location.state.release_date);
+
+  const [show, setShow] = useState(false);
+  const handleChange = () => {
+    setShow(!show);
+  };
 
   return location.state !== null ? (
     <Container
@@ -47,6 +64,12 @@ const ViewDetails = () => {
         >
           {location.state.overview}
         </Text>
+        {user && (
+          <Button variant={"unstyled"} onClick={handleChange}>
+            <ChatIcon boxSize={"6"} pb={"2"} color={"purple.400"} />
+          </Button>
+        )}
+        {show && <CommentSection />}
       </VStack>
     </Container>
   ) : (

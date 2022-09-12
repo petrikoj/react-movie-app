@@ -73,14 +73,14 @@ const CardsLayout = ({ movie }) => {
                   {movie.vote_average === 0 ? "-" : movie.vote_average}
                 </Tag>
               </Tooltip>
-              <Button
+              {/* <Button
                 size={"xs"}
                 bg={"gray.200"}
                 color={"blackAlpha.800"}
                 onClick={NeedToLoginAlert}
               >
                 <ChatIcon color={"blackAlpha.800"} />
-              </Button>
+              </Button> */}
               <Button size={"xs"} bg={"gray.200"}>
                 <AddIcon color={"blackAlpha.800"} />
               </Button>

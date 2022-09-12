@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import {
   InputGroup,
   Input,
@@ -7,17 +8,49 @@ import {
   Button,
   Center,
   Box,
+  Alert,
 } from "@chakra-ui/react";
-import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import {
+  EmailIcon,
+  ViewIcon,
+  ViewOffIcon,
+  WarningTwoIcon,
+} from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
-function PasswordInput() {
+const LogInInput = () => {
+  const { logIn, user } = useContext(AuthContext);
+
+  const [isInvalid, setIsInvalid] = useState(false);
+
+  const navigate = useNavigate();
+
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(!show);
 
   const [isLoading, setIsLoading] = useState(false);
-  const handleLogin = () => {
+
+  const handleLogIn = () => {
+    logIn(email, password);
     setIsLoading(true);
-    console.log("Not functional yet!");
+    user ? navigate(-1) : handleError();
+  };
+
+  const handleError = () => {
+    setIsLoading(false);
+    setIsInvalid(true);
+    setEmail("");
+    setPassword("");
+  };
+
+  const [email, setEmail] = useState("");
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const [password, setPassword] = useState("");
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
   return (
@@ -32,21 +65,26 @@ function PasswordInput() {
             />
             <Input
               isDisabled={isLoading ? true : false}
+              isInvalid={false}
               borderColor={"red.200"}
               width={"80"}
-              type="email"
-              placeholder="E-Mail"
+              type={"email"}
+              value={email}
+              placeholder={"E-Mail"}
               focusBorderColor="teal.300"
+              onChange={handleEmailChange}
             />
           </InputGroup>
           <InputGroup>
             <Input
               isDisabled={isLoading ? true : false}
               type={show ? "text" : "password"}
+              value={password}
               borderColor={"red.200"}
               width={"80"}
-              placeholder="Password"
-              focusBorderColor="teal.300"
+              placeholder={"Password"}
+              focusBorderColor={"teal.300"}
+              onChange={handlePasswordChange}
             />
             <InputLeftElement>
               <Button bg={"none"} variant={"unstyled"} onClick={handleShow}>
@@ -59,7 +97,7 @@ function PasswordInput() {
             </InputLeftElement>
           </InputGroup>
           <Button
-            onClick={handleLogin}
+            onClick={handleLogIn}
             isLoading={isLoading ? true : false}
             variant={"solid"}
             colorScheme={"teal"}
@@ -73,6 +111,6 @@ function PasswordInput() {
       </Center>
     </Box>
   );
-}
+};
 
-export default PasswordInput;
+export default LogInInput;

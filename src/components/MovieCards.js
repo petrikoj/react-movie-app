@@ -8,13 +8,13 @@ const MovieCards = ({ movies }) => {
     <Box
       mx={"10"}
       mt={"12"}
-      borderWidth={"thin"}
+      // borderWidth={"thin"}
       borderRadius={"lg"}
       borderColor={"blackAlpha.800"}
       pt={"4"}
       pb={"4"}
       boxShadow={"sm"}
-      // bgGradient={"radial(whiteAlpha.50, red.100)"}
+      bgGradient={"linear(to-tr, blue.50, red.200, orange.100)"}
     >
       <SimpleGrid columns={[1, 2, 3, 4, 5, 6]} spacingX={"4"} spacingY={"8"}>
         {movies.map((movie, id) => {

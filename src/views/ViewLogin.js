@@ -1,9 +1,9 @@
 import React from "react";
-import PasswordInput from "../components/PasswordInput";
+import LogInInput from "../components/LogInInput";
 import { Container, Text, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-function viewLogin() {
+function ViewLogin() {
   return (
     <Container mt={"44"} mb={"60"}>
       <VStack>
@@ -16,13 +16,17 @@ function viewLogin() {
         >
           Login
         </Text>
-        <PasswordInput />
+        <LogInInput />
         <Text fontStyle={"italic"}>
-          Not registered yet? Click <Link to={""}>here</Link>.
+          Not registered yet?{" "}
+          <Link fontStyle={"bold"} to={"/registration"}>
+            Click here
+          </Link>
+          .
         </Text>
       </VStack>
     </Container>
   );
 }
 
-export default viewLogin;
+export default ViewLogin;

@@ -23,7 +23,7 @@ function ViewHome() {
         <>
           <Text
             as={"h2"}
-            fontSize={"2xl"}
+            fontSize={"4xl"}
             mt={"32"}
             fontWeight={"semibold"}
             textAlign={"center"}

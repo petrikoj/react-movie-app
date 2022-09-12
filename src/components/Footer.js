@@ -13,7 +13,8 @@ const Footer = () => {
       mt={"20"}
       p={"2.5"}
       pos={"sticky"}
-      bgGradient={"linear(to-tl, pink.200, red.300)"}
+      // bgGradient={"linear(to-tl, pink.200, red.300)"}
+      bgGradient={"linear(to-tl, yellow.100, cyan.100, red.200)"}
       align={"center"}
     >
       <Box>

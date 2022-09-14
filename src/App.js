@@ -10,6 +10,8 @@ import ViewSearchResults from "./views/ViewSearchResults";
 import { Route, Routes } from "react-router-dom";
 import { SimpleGrid } from "@chakra-ui/react";
 import { AuthContextProvider } from "./context/AuthContext";
+import { ScrollButton, ProtectedRoute } from "./components/Helpers";
+import ViewProfile from "./views/ViewProfile";
 
 function App() {
   return (
@@ -20,11 +22,20 @@ function App() {
           <Routes>
             <Route path="/" element={<ViewHome />} />
             <Route path="/login" element={<ViewLogin />} />
+            <Route
+              path="/profile/:user"
+              element={
+                <ProtectedRoute>
+                  <ViewProfile />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/registration" element={<ViewRegistration />} />
             <Route path="/movie/:title" element={<ViewDetails />} />
             <Route path="/search/:input" element={<ViewSearchResults />} />
             <Route path="*" element={<ViewNoMatch />} />
           </Routes>
+          <ScrollButton />
           <Footer />
         </SimpleGrid>
       </AuthContextProvider>

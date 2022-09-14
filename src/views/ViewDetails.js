@@ -8,12 +8,15 @@ import {
   VStack,
   Badge,
   Button,
+  Spacer,
+  HStack,
+  Center,
 } from "@chakra-ui/react";
-import { ChatIcon } from "@chakra-ui/icons";
 import ViewNoMatch from "./ViewNoMatch";
 import { DateConverter } from "../components/Helpers";
 import CommentSection from "../components/CommentSection";
 import { AuthContext } from "../context/AuthContext";
+import { ChatIcon, ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 const ViewDetails = () => {
   const { user } = useContext(AuthContext);
@@ -30,12 +33,19 @@ const ViewDetails = () => {
     <Container
       mt={"32"}
       pt={"2"}
+      pb={"4"}
+      w={["xs", "sm", "md", "3xl"]}
       borderWidth={"thin"}
       borderColor={"blackAlpha.800"}
       borderRadius={"lg"}
     >
       <VStack>
-        <Text as={"header"} fontSize={"3xl"} color={"blackAlpha.800"}>
+        <Text
+          as={"header"}
+          textAlign={"center"}
+          fontSize={"3xl"}
+          color={"blackAlpha.800"}
+        >
           {location.state.title}
         </Text>
         <Image
@@ -45,15 +55,14 @@ const ViewDetails = () => {
           borderRadius={"lg"}
           boxShadow={"md"}
         />
-        <Stack direction={"row"}>
-          <Badge variant={"solid"} colorScheme={"teal"}>
-            {releaseDate}
+        <Stack direction={["column", "row"]} p={"1.5"}>
+          <Badge variant={"outline"} colorScheme={"green"}>
+            Release date: {releaseDate}
           </Badge>
-          <Badge variant={"solid"} colorScheme={"yellow"}>
-            {location.state.original_language}
+          <Badge variant={"outline"} colorScheme={"gray"}>
+            Original Language: {location.state.original_language}
           </Badge>
         </Stack>
-
         <Text
           as={"section"}
           fontFamily={"IBM Plex Sans"}
@@ -64,12 +73,22 @@ const ViewDetails = () => {
         >
           {location.state.overview}
         </Text>
-        {user && (
-          <Button variant={"unstyled"} onClick={handleChange}>
-            <ChatIcon boxSize={"6"} pb={"2"} color={"purple.400"} />
-          </Button>
-        )}
-        {show && <CommentSection />}
+        {user &&
+          (show ? (
+            <Button variant={"outline"} bg={"teal.100"} onClick={handleChange}>
+              <ChevronUpIcon />
+            </Button>
+          ) : (
+            <Button variant={"outline"} bg={"teal.100"} onClick={handleChange}>
+              <Center>
+                <Text fontSize={"md"} letterSpacing={"wide"}>
+                  Comments
+                </Text>
+                <ChevronDownIcon />
+              </Center>
+            </Button>
+          ))}
+        {user && show && <CommentSection />}
       </VStack>
     </Container>
   ) : (

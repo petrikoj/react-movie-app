@@ -11,7 +11,7 @@ const Footer = () => {
       h={["sm", "40", "60"]}
       w={"100%"}
       mb={"0"}
-      mt={"20"}
+      mt={"36"}
       p={"10"}
       pos={"sticky"}
       // bgGradient={"linear(to-tl, pink.200, red.300)"}

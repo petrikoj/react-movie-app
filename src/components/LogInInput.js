@@ -8,7 +8,6 @@ import {
   Button,
   Center,
   Box,
-  Alert,
 } from "@chakra-ui/react";
 import {
   EmailIcon,
@@ -17,11 +16,10 @@ import {
   WarningTwoIcon,
 } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import ViewNoMatch from "../views/ViewNoMatch";
 
 const LogInInput = () => {
-  const { logIn, user } = useContext(AuthContext);
-
-  const [isInvalid, setIsInvalid] = useState(false);
+  const { logIn, user, error } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -30,18 +28,22 @@ const LogInInput = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogIn = () => {
+  const handleLogIn = (user) => {
     logIn(email, password);
     setIsLoading(true);
-    user ? navigate(-1) : handleError();
+    if (user) {
+      navigate(-1);
+    } else if (!user) {
+      alert(error);
+    }
   };
 
-  const handleError = () => {
-    setIsLoading(false);
-    setIsInvalid(true);
-    setEmail("");
-    setPassword("");
-  };
+  // const handleError = () => {
+  //   alert(error);
+  //   setIsLoading(false);
+  //   setEmail("");
+  //   setPassword("");
+  // };
 
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
@@ -65,7 +67,6 @@ const LogInInput = () => {
             />
             <Input
               isDisabled={isLoading ? true : false}
-              isInvalid={false}
               borderColor={"red.200"}
               width={"80"}
               type={"email"}

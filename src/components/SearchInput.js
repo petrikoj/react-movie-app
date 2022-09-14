@@ -11,6 +11,14 @@ const SearchInput = () => {
   console.log(input);
   const formattedInput = SpaceReplacer(input);
 
+  const handleResetAndScrollTop = () => {
+    setInput("");
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  };
+
   return (
     <Stack>
       <InputGroup>
@@ -19,17 +27,20 @@ const SearchInput = () => {
           type={"text"}
           value={input}
           onChange={handleChange}
-          w={"80"}
+          w={["28", "60", "80"]}
           border={"0"}
           placeholder="Search for a movie ..."
           _placeholder={{ fontFamily: "body", color: "pink.400" }}
           borderRadius={"lg"}
           focusBorderColor={"blackAlpha.700"}
           _hover={{ borderColor: "black.200" }}
-          bg={"whiteAlpha.100"}
         />
         <InputRightElement>
-          <Link to={`/search/${formattedInput}`} state={{ input: input }}>
+          <Link
+            to={`/search/${formattedInput}`}
+            state={{ input: input }}
+            onClick={handleResetAndScrollTop}
+          >
             <SearchIcon color={"blackAlpha.800"} />
           </Link>
         </InputRightElement>

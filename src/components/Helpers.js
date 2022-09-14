@@ -10,7 +10,10 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
 // Replacing the Spaces in URLs //
 
@@ -122,7 +125,14 @@ const ScrollButton = () => {
   );
 };
 
-//
+// Protected Route
+
+function ProtectedRoute({ children }) {
+  const isLogged = useAuth();
+  return <>{isLogged ? children : <Navigate to="/login" />}</>;
+}
+
+export default ProtectedRoute;
 
 export {
   SpaceReplacer,
@@ -131,4 +141,5 @@ export {
   ErrorAlert,
   ScrollToTop,
   ScrollButton,
+  ProtectedRoute,
 };

@@ -6,7 +6,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../Config";
-import { Alert } from "@chakra-ui/react";
+import { ErrorAlert } from "../components/Helpers";
 
 export const AuthContext = createContext();
 
@@ -38,10 +38,11 @@ export const AuthContextProvider = (props) => {
         setUser(user);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
         console.log("Error:", error);
-        alert(error.message);
+        // alert(error.message);
+        ErrorAlert({ error });
       });
   };
 

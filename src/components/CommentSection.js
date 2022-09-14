@@ -7,24 +7,36 @@ import {
   HStack,
   Button,
   Icon,
+  Text,
+  Avatar,
 } from "@chakra-ui/react";
 import { FiSend } from "react-icons/fi";
+import { AiOutlineUser } from "react-icons/ai";
 import { AuthContext } from "../context/AuthContext";
 import {
   collection,
   addDoc,
+  setDoc,
+  doc,
   getDocs,
   query,
   where,
   onSnapshot,
+  arrayUnion,
+  updateDoc,
+  orderBy,
 } from "firebase/firestore";
 import { db } from "../Config";
+import { useLocation } from "react-router-dom";
 
-function CommentSection() {
+const CommentSection = () => {
   const { user, setUser, logout } = useContext(AuthContext);
   const [message, setMessage] = useState("");
   const [comments, setComments] = useState(null);
   const handleMessageChange = (e) => setMessage(e.target.value);
+
+  const location = useLocation();
+  // console.log("Logging location/ID from Comment Section:", location.state.id);
 
   const sendMessage = async () => {
     setMessage("");
@@ -33,17 +45,62 @@ function CommentSection() {
       date: new Date().toLocaleDateString(),
       user: user.email,
     };
+
     console.log("My message object:", messageObject);
+    console.log("Current movie ID:", location.state.id);
     try {
-      const docRef = await addDoc(collection(db, "comments"), messageObject);
-      console.log("Document written with ID: ", docRef.id);
+      const q = query(
+        collection(db, "comments"),
+        where("movieId", "==", location.state.id)
+      );
+
+      const querySnapshot = await getDocs(q);
+      console.log("querySnapshot", querySnapshot);
+      let docId = "";
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.data());
+        if (doc.id) {
+          docId = doc.id;
+        }
+      });
+
+      if (docId !== "") {
+        const commentRef = doc(db, "comments", docId);
+
+        await updateDoc(commentRef, {
+          comments: arrayUnion(messageObject),
+        });
+      } else {
+        const docRef = await addDoc(collection(db, "comments"), {
+          movieId: location.state.id,
+          comments: [messageObject],
+        });
+      }
+
+      // const commentRef = doc(
+      //   collection(db, "comments", `/${location.state.id}`)
+      // );
+      // await setDoc(doc(db, "comments", `movie/${location.state.id}`), {
+      //   title: "a",
+      //   // comments: [
+      //   //   {
+      //   //     text: message,
+      //   //     date: new Date().toLocaleDateString(),
+      //   //     user: user.email,
+      //   //   },
+      //   // ],
+      // });
     } catch (error) {
       console.log("Error adding document: ", error);
     }
   };
 
   const readComments = async () => {
-    const q = query(collection(db, "comments"));
+    const q = query(
+      collection(db, "comments"),
+      where("movieId", "==", location.state.id)
+    );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const comments = [];
       querySnapshot.forEach((doc) => {
@@ -65,15 +122,40 @@ function CommentSection() {
     readComments();
   }, []);
 
+  // console.log(comments[0].comments);
+
   return (
-    <Box w={"80%"} borderRadius={"lg"}>
+    <Box w={"85%"} borderRadius={"lg"}>
       <Box h={"52"} overflowX={"hidden"} overflowY={"auto"}>
         {comments &&
-          comments.map((comment) => (
-            <Box borderRadius={"2xl"} bgColor={"yellow.200"} p={"3"} m={"2"}>
-              <p>{comment.date}</p>
-              <p>{comment.user}</p>
-              <p>{comment.text}</p>
+          comments.map((comment, id) => (
+            <Box key={id}>
+              {comment.comments.map((content, id) => {
+                return (
+                  <Box
+                    key={id}
+                    borderRadius={"2xl"}
+                    bgColor={"teal.100"}
+                    p={"3.5"}
+                    m={"2"}
+                  >
+                    <Text textAlign={"right"} fontSize={"2xs"}>
+                      {content.date}
+                    </Text>
+                    <HStack mr={"48"}>
+                      <Avatar
+                        size={"sm"}
+                        bg={"red.500"}
+                        icon={<AiOutlineUser />}
+                        fontSize={"1.2rem"}
+                        mb={"1"}
+                      />
+                      <Text fontSize={"xs"}>{content.user}</Text>
+                    </HStack>
+                    <Text fontSize={"md"}>{content.text}</Text>
+                  </Box>
+                );
+              })}
             </Box>
           ))}
       </Box>
@@ -82,22 +164,22 @@ function CommentSection() {
           <Input
             placeholder={"Write a comment ..."}
             value={message}
-            focusBorderColor={"cyan.500"}
+            focusBorderColor={"teal.300"}
             onChange={handleMessageChange}
           />
           <InputRightElement>
             <Button
               variant={"unstyled"}
-              colorScheme={"teal"}
+              colorScheme={"cyan"}
               onClick={sendMessage}
             >
-              <Icon as={FiSend} color={"cyan.500"} />
+              <Icon as={FiSend} color={"teal.300"} />
             </Button>
           </InputRightElement>
         </InputGroup>
       </HStack>
     </Box>
   );
-}
+};
 
 export default CommentSection;

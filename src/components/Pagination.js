@@ -1,14 +1,17 @@
 import React from "react";
 import { Button, Box, HStack } from "@chakra-ui/react";
 import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
+import { ScrollToTop } from "./Helpers";
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   function goToNextPage() {
     setCurrentPage((currentPage) => currentPage + 1);
+    ScrollToTop();
   }
 
   function goToPreviousPage() {
     setCurrentPage((currentPage) => currentPage - 1);
+    ScrollToTop();
   }
 
   return (
@@ -25,10 +28,12 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
             <ArrowBackIcon />
           </Button>
         )}
-        <Box>
-          {currentPage}/{totalPages}
-        </Box>
-        {currentPage !== totalPages && (
+        {currentPage <= totalPages && (
+          <Box>
+            {currentPage}/{totalPages}
+          </Box>
+        )}
+        {currentPage !== totalPages && currentPage <= totalPages && (
           <Button
             onClick={goToNextPage}
             variant={"ghost"}

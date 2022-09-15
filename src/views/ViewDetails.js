@@ -35,7 +35,7 @@ const ViewDetails = () => {
       pt={"2"}
       pb={"4"}
       w={["xs", "sm", "md", "3xl"]}
-      borderWidth={"thin"}
+      borderWidth={["medium", "thin"]}
       borderColor={"blackAlpha.800"}
       borderRadius={"lg"}
     >
@@ -51,15 +51,15 @@ const ViewDetails = () => {
         <Image
           src={`https://image.tmdb.org/t/p/w300_and_h450_face/${location.state.poster_path}`}
           alt={location.state.title}
-          border={"1px"}
+          border={["2px", "1px"]}
           borderRadius={"lg"}
           boxShadow={"md"}
         />
         <Stack direction={["column", "row"]} p={"1.5"}>
-          <Badge variant={"outline"} colorScheme={"green"}>
+          <Badge variant={"outline"} colorScheme={"teal"}>
             Release date: {releaseDate}
           </Badge>
-          <Badge variant={"outline"} colorScheme={"gray"}>
+          <Badge variant={"outline"} colorScheme={"purple"}>
             Original Language: {location.state.original_language}
           </Badge>
         </Stack>

@@ -8,7 +8,7 @@ const Footer = () => {
     <Flex
       direction={["column-reverse", "row"]}
       as={"footer"}
-      h={["sm", "40", "60"]}
+      h={["xs", "40", "60"]}
       w={"100%"}
       mb={"0"}
       mt={"36"}
@@ -19,7 +19,7 @@ const Footer = () => {
       justify={"space-evenly"}
     >
       <VStack m={"4"}>
-        <Text textAlign={"center"} fontFamily={"mono"} fontSize={"medium"}>
+        <Text textAlign={"center"} fontFamily={"mono"} fontSize={["sm", "md"]}>
           Data provided by:
         </Text>
         <a
@@ -48,7 +48,7 @@ const Footer = () => {
       </Box>
       <HStack m={"4"}>
         <RiCopyrightFill size={"24"} />
-        <Text fontFamily={"mono"} fontSize={"large"}>
+        <Text fontFamily={"mono"} fontSize={["md", "large"]}>
           petrikoj 2022
         </Text>
       </HStack>

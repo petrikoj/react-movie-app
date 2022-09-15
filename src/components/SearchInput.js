@@ -8,7 +8,6 @@ import { SpaceReplacer } from "./Helpers";
 const SearchInput = () => {
   const [input, setInput] = useState("");
   const handleChange = (e) => setInput(e.target.value);
-  console.log(input);
   const formattedInput = SpaceReplacer(input);
 
   const handleResetAndScrollTop = () => {
@@ -29,11 +28,10 @@ const SearchInput = () => {
           onChange={handleChange}
           w={["28", "60", "80"]}
           border={"0"}
-          placeholder="Search for a movie ..."
-          _placeholder={{ fontFamily: "body", color: "pink.400" }}
+          placeholder={"Search for a movie ..."}
+          _placeholder={{ fontFamily: "body", color: "red.500" }}
           borderRadius={"lg"}
           focusBorderColor={"blackAlpha.700"}
-          _hover={{ borderColor: "black.200" }}
         />
         <InputRightElement>
           <Link

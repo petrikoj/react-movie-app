@@ -14,10 +14,9 @@ const Footer = () => {
       mt={"36"}
       p={"10"}
       pos={"sticky"}
-      // bgGradient={"linear(to-tl, pink.200, red.300)"}
-      bgGradient={"linear(to-tl, yellow.100, cyan.100, red.200)"}
+      bgGradient={"linear(to-tr, teal.100, cyan.100, teal.100, blue.200)"}
       align={"center"}
-      justify={"center"}
+      justify={"space-evenly"}
     >
       <VStack m={"4"}>
         <Text textAlign={"center"} fontFamily={"mono"} fontSize={"medium"}>

@@ -4,11 +4,14 @@ import {
   InputGroup,
   InputRightElement,
   Box,
+  Flex,
   HStack,
   Button,
   Icon,
   Text,
   Avatar,
+  Container,
+  Spacer,
 } from "@chakra-ui/react";
 import { FiSend } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
@@ -36,7 +39,6 @@ const CommentSection = () => {
   const handleMessageChange = (e) => setMessage(e.target.value);
 
   const location = useLocation();
-  // console.log("Logging location/ID from Comment Section:", location.state.id);
 
   const sendMessage = async () => {
     setMessage("");
@@ -58,7 +60,6 @@ const CommentSection = () => {
       console.log("querySnapshot", querySnapshot);
       let docId = "";
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
         console.log(doc.data());
         if (doc.id) {
           docId = doc.id;
@@ -77,20 +78,6 @@ const CommentSection = () => {
           comments: [messageObject],
         });
       }
-
-      // const commentRef = doc(
-      //   collection(db, "comments", `/${location.state.id}`)
-      // );
-      // await setDoc(doc(db, "comments", `movie/${location.state.id}`), {
-      //   title: "a",
-      //   // comments: [
-      //   //   {
-      //   //     text: message,
-      //   //     date: new Date().toLocaleDateString(),
-      //   //     user: user.email,
-      //   //   },
-      //   // ],
-      // });
     } catch (error) {
       console.log("Error adding document: ", error);
     }
@@ -108,21 +95,10 @@ const CommentSection = () => {
       });
       setComments(comments);
     });
-
-    // const querySnapshot = await getDocs(collection(db, "comments"));
-    // const comments = [];
-    // querySnapshot.forEach((doc) => {
-    //   console.log(doc.id);
-    //   console.log(doc.data());
-    //   comments.push(doc.data());
-    // });
-    // setComments(comments);
   };
   useEffect(() => {
     readComments();
   }, []);
-
-  // console.log(comments[0].comments);
 
   return (
     <Box w={"85%"} borderRadius={"lg"}>
@@ -138,22 +114,15 @@ const CommentSection = () => {
                     bgColor={"teal.100"}
                     p={"3.5"}
                     m={"2"}
+                    flexDir={"column"}
                   >
-                    <Text
-                      textAlign={"right"}
-                      fontSize={"2xs"}
-                      fontWeight={"light"}
-                      letterSpacing={"wider"}
-                    >
-                      {content.date}
-                    </Text>
-                    <HStack mr={"48"}>
+                    <Flex align={"center"}>
                       <Avatar
                         size={"sm"}
                         bg={"red.500"}
                         icon={<AiOutlineUser />}
                         fontSize={"1.2rem"}
-                        mb={"1"}
+                        m={"1"}
                       />
                       <Text
                         fontSize={"xs"}
@@ -162,7 +131,16 @@ const CommentSection = () => {
                       >
                         {content.user}
                       </Text>
-                    </HStack>
+                      <Spacer />
+                      <Text
+                        textAlign={"right"}
+                        fontSize={"2xs"}
+                        fontWeight={"light"}
+                        letterSpacing={"wider"}
+                      >
+                        {content.date}
+                      </Text>
+                    </Flex>
                     <Text fontSize={"md"}>{content.text}</Text>
                   </Box>
                 );

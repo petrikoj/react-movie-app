@@ -8,9 +8,15 @@ import {
   CloseButton,
   Box,
   IconButton,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useAuth } from "../hooks/useAuth";
 import { Navigate } from "react-router-dom";
@@ -61,11 +67,53 @@ function NeedToLoginAlert() {
   );
 }
 
+// Alert Dialog
+
+function ShowAlertDialog() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
+
+  return (
+    <>
+      <Button colorScheme="red" onClick={onOpen}>
+        Delete Customer
+      </Button>
+
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize={"lg"} fontWeight={"bold"}>
+              Delete Customer
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme={"red"} onClick={onClose} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </>
+  );
+}
+
 // Alert
 
 const ErrorAlert = ({ error }) => {
   return (
-    <Alert status={"error"}>
+    <Alert status={"error"} mt={"96"}>
       <AlertIcon boxSize={"lg"} />
       <AlertTitle>{error.code}</AlertTitle>
       <AlertDescription>{error.message}</AlertDescription>
@@ -141,5 +189,6 @@ export {
   ErrorAlert,
   ScrollToTop,
   ScrollButton,
+  ShowAlertDialog,
   ProtectedRoute,
 };

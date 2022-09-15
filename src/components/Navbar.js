@@ -28,7 +28,7 @@ const Navbar = () => {
       zIndex={"banner"}
     >
       {user ? (
-        <Link to={"/profile/:user"}>
+        <Link to={"/*"} onClick={ScrollToTop}>
           <Avatar
             icon={<BiUser />}
             size={"md"}

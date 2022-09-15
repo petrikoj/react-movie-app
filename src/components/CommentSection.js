@@ -139,7 +139,12 @@ const CommentSection = () => {
                     p={"3.5"}
                     m={"2"}
                   >
-                    <Text textAlign={"right"} fontSize={"2xs"}>
+                    <Text
+                      textAlign={"right"}
+                      fontSize={"2xs"}
+                      fontWeight={"light"}
+                      letterSpacing={"wider"}
+                    >
                       {content.date}
                     </Text>
                     <HStack mr={"48"}>
@@ -150,7 +155,13 @@ const CommentSection = () => {
                         fontSize={"1.2rem"}
                         mb={"1"}
                       />
-                      <Text fontSize={"xs"}>{content.user}</Text>
+                      <Text
+                        fontSize={"xs"}
+                        fontWeight={"semibold"}
+                        letterSpacing={"wide"}
+                      >
+                        {content.user}
+                      </Text>
                     </HStack>
                     <Text fontSize={"md"}>{content.text}</Text>
                   </Box>

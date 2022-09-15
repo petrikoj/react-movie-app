@@ -16,7 +16,7 @@ import ViewNoMatch from "./ViewNoMatch";
 import { DateConverter } from "../components/Helpers";
 import CommentSection from "../components/CommentSection";
 import { AuthContext } from "../context/AuthContext";
-import { ChatIcon, ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 const ViewDetails = () => {
   const { user } = useContext(AuthContext);

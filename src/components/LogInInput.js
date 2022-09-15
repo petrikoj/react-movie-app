@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import ViewNoMatch from "../views/ViewNoMatch";
+import { ErrorAlert, ShowAlertDialog } from "./Helpers";
 
 const LogInInput = () => {
   const { logIn, user, error } = useContext(AuthContext);
@@ -31,10 +32,11 @@ const LogInInput = () => {
   const handleLogIn = (user) => {
     logIn(email, password);
     setIsLoading(true);
-    if (user) {
-      navigate(-1);
-    } else if (!user) {
-      alert(error);
+    {
+      user && navigate(-1);
+    }
+    {
+      !user && alert(error);
     }
   };
 

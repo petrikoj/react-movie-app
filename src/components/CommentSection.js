@@ -12,6 +12,7 @@ import {
   Avatar,
   Container,
   Spacer,
+  Divider,
 } from "@chakra-ui/react";
 import { FiSend } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
@@ -126,7 +127,7 @@ const CommentSection = () => {
                       />
                       <Text
                         fontSize={"xs"}
-                        fontWeight={"semibold"}
+                        fontWeight={["normal", "semibold"]}
                         letterSpacing={"wide"}
                       >
                         {content.user}

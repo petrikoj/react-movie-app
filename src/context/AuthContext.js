@@ -7,12 +7,14 @@ import {
 } from "firebase/auth";
 import { auth } from "../Config";
 import { ConfirmUserLogout, UserNeedsToLogin } from "../components/Helpers";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const redirect = useNavigate();
 
   const registerNewUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -29,6 +31,7 @@ export const AuthContextProvider = (props) => {
         alert(error.message);
         // ..
       });
+    const userColl = save;
   };
 
   const logIn = (email, password) => {
@@ -37,6 +40,7 @@ export const AuthContextProvider = (props) => {
         const user = userCredential.user;
         console.log("User:", user);
         setUser(user);
+        redirect(-1);
       })
       .catch((error) => {
         const errorCode = error.code;

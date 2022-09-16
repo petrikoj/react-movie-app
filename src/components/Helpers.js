@@ -57,7 +57,7 @@ const ConfirmUserLogout = () => {
   const customId = "logout-confirmed";
   toast.success("Logout successful!", {
     position: toast.POSITION.TOP_CENTER,
-    autoClose: 2000,
+    autoClose: 1200,
     toastId: customId,
     draggablePercent: 60,
   });

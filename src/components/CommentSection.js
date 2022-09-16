@@ -112,7 +112,11 @@ const CommentSection = () => {
                   <Box
                     key={id}
                     borderRadius={"2xl"}
-                    bgColor={"teal.100"}
+                    bgColor={
+                      content.user.includes(user.email)
+                        ? "teal.100"
+                        : "gray.200"
+                    }
                     p={"3"}
                     m={"2"}
                     flexDir={"column"}
@@ -120,7 +124,11 @@ const CommentSection = () => {
                     <Flex align={"center"}>
                       <Avatar
                         size={"sm"}
-                        bg={"red.500"}
+                        bg={
+                          content.user.includes(user.email)
+                            ? "red.500"
+                            : "whiteAlpha.800"
+                        }
                         icon={<AiOutlineUser />}
                         fontSize={"1.2rem"}
                         m={"1"}
@@ -130,7 +138,9 @@ const CommentSection = () => {
                         fontWeight={["normal", "semibold"]}
                         letterSpacing={"wide"}
                       >
-                        {content.user}
+                        {content.user.includes(user.email)
+                          ? "Me"
+                          : content.user}
                       </Text>
                       <Spacer />
                       <Text

@@ -31,7 +31,7 @@ const LogInInput = () => {
   const handleLogIn = (user) => {
     logIn(email, password);
     setIsLoading(true);
-    user && navigate(-1);
+    // user && navigate(-1);
   };
 
   // const handleError = () => {
@@ -68,7 +68,7 @@ const LogInInput = () => {
               type={"email"}
               value={email}
               placeholder={"E-Mail"}
-              focusBorderColor="teal.300"
+              focusBorderColor={"teal.200"}
               onChange={handleEmailChange}
             />
           </InputGroup>
@@ -80,7 +80,7 @@ const LogInInput = () => {
               borderColor={"red.200"}
               width={"80"}
               placeholder={"Password"}
-              focusBorderColor={"teal.300"}
+              focusBorderColor={"teal.200"}
               onChange={handlePasswordChange}
             />
             <InputLeftElement>

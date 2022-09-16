@@ -31,7 +31,6 @@ export const AuthContextProvider = (props) => {
         alert(error.message);
         // ..
       });
-    const userColl = save;
   };
 
   const logIn = (email, password) => {

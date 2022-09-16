@@ -45,6 +45,18 @@ const UserNeedsToLogin = () => {
   const customId = "login-reminder";
   toast.error("Login required for usage of this feature", {
     position: toast.POSITION.TOP_CENTER,
+    autoClose: 1500,
+    toastId: customId,
+    draggablePercent: 60,
+  });
+};
+
+// Logout successful
+
+const ConfirmUserLogout = () => {
+  const customId = "logout-confirmed";
+  toast.success("Logout successful!", {
+    position: toast.POSITION.TOP_CENTER,
     autoClose: 2000,
     toastId: customId,
     draggablePercent: 60,
@@ -136,4 +148,5 @@ export {
   ScrollToTop,
   ScrollButton,
   UserNeedsToLogin,
+  ConfirmUserLogout,
 };

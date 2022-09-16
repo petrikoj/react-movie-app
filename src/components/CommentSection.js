@@ -102,7 +102,7 @@ const CommentSection = () => {
   }, []);
 
   return (
-    <Box w={"85%"} borderRadius={"lg"}>
+    <Box w={"90%"} borderRadius={"lg"}>
       <Box h={"52"} overflowX={"hidden"} overflowY={"auto"}>
         {comments &&
           comments.map((comment, id) => (
@@ -113,7 +113,7 @@ const CommentSection = () => {
                     key={id}
                     borderRadius={"2xl"}
                     bgColor={"teal.100"}
-                    p={"3.5"}
+                    p={"3"}
                     m={"2"}
                     flexDir={"column"}
                   >

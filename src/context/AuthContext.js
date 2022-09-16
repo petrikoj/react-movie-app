@@ -6,6 +6,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../Config";
+import { ConfirmUserLogout, UserNeedsToLogin } from "../components/Helpers";
 
 export const AuthContext = createContext();
 
@@ -62,6 +63,7 @@ export const AuthContextProvider = (props) => {
     signOut(auth)
       .then(() => {
         setUser(null);
+        ConfirmUserLogout();
       })
       .catch((error) => {
         console.log("Error:", error);

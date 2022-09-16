@@ -17,7 +17,6 @@ import {
   AlertDialogOverlay,
   Text,
 } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useAuth } from "../hooks/useAuth";
@@ -49,72 +48,6 @@ const UserNeedsToLogin = () => {
     toastId: customId,
     draggablePercent: 60,
   });
-};
-
-// Alert Dialog
-
-function ShowAlertDialog() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef();
-
-  return (
-    <>
-      <Button colorScheme="red" onClick={onOpen}>
-        Delete Customer
-      </Button>
-
-      <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize={"lg"} fontWeight={"bold"}>
-              Delete Customer
-            </AlertDialogHeader>
-
-            <AlertDialogBody>
-              Are you sure? You can't undo this action afterwards.
-            </AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button colorScheme={"red"} onClick={onClose} ml={3}>
-                Delete
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
-    </>
-  );
-}
-
-// Alert
-
-const ErrorAlert = (error) => {
-  const [isShow, setIsShow] = useState[true];
-  const handleClose = (e) => {
-    e.preventDefault();
-    setIsShow(false);
-  };
-  return (
-    <Alert status={"error"} height={"96"}>
-      <AlertIcon boxSize={"lg"} />
-      <AlertTitle>{error.code}</AlertTitle>
-      <AlertDescription>{error.message}</AlertDescription>
-      <CloseButton
-        position={"absolute"}
-        right={"3"}
-        top={"3"}
-        cursor={"pointer"}
-        onClick={handleClose}
-      />
-    </Alert>
-  );
 };
 
 // Scroll to top function
@@ -171,19 +104,17 @@ const ScrollButton = () => {
 // Protected Route
 
 function ProtectedRoute({ children }) {
-  const isLogged = useAuth();
-  return <>{isLogged ? children : <Navigate to="/login" />}</>;
+  const isLoggedIn = useAuth();
+  return <>{isLoggedIn ? children : <Navigate to="/login" />}</>;
 }
 
 //
 
 export {
-  SpaceReplacer,
   DateConverter,
-  ErrorAlert,
+  ProtectedRoute,
+  SpaceReplacer,
   ScrollToTop,
   ScrollButton,
-  ShowAlertDialog,
-  ProtectedRoute,
   UserNeedsToLogin,
 };

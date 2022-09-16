@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
   Box,
@@ -23,6 +23,9 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { ScrollToTop, UserNeedsToLogin } from "./Helpers";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const CardsLayout = ({ movie }) => {
   const movieTitle = movie.title;
@@ -30,6 +33,9 @@ const CardsLayout = ({ movie }) => {
     .replace(/\s/g, "-")
     .replace(":", "")
     .toLowerCase();
+
+  const { user } = useContext(AuthContext);
+  const { isLoggedIn } = useAuth();
 
   return (
     <Container>
@@ -109,14 +115,27 @@ const CardsLayout = ({ movie }) => {
                   </PopoverBody>
                 </PopoverContent>
               </Popover>
-              <IconButton
-                icon={<AddIcon />}
-                size={"xs"}
-                bg={"gray.200"}
-                ariaLabel={"Add to your favorites"}
-                color={"blackAlpha.800"}
-                onClick={UserNeedsToLogin}
-              />
+              {user && (
+                <Link to={"/profile/:user"}>
+                  <IconButton
+                    icon={<AddIcon />}
+                    size={"xs"}
+                    bg={"gray.200"}
+                    ariaLabel={"Add to your favorites"}
+                    color={"blackAlpha.800"}
+                  />
+                </Link>
+              )}
+              {!user && (
+                <IconButton
+                  icon={<AddIcon />}
+                  size={"xs"}
+                  bg={"gray.200"}
+                  ariaLabel={"Add to your favorites"}
+                  color={"blackAlpha.800"}
+                  onClick={UserNeedsToLogin}
+                />
+              )}
             </HStack>
           </VStack>
         </Box>

@@ -14,6 +14,7 @@ import {
 
 function ViewProfile() {
   const { user, logout } = useContext(AuthContext);
+  return <p>Hello {user}!</p>;
 }
 
 export default ViewProfile;

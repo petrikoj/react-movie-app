@@ -25,7 +25,7 @@ function App() {
             <Route path="/" element={<ViewHome />} />
             <Route path="/login" element={<ViewLogin />} />
             <Route
-              path="/profile/:user"
+              path={"/profile/*"}
               element={
                 <ProtectedRoute>
                   <ViewProfile />

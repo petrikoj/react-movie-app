@@ -38,7 +38,7 @@ const Navbar = () => {
             />
           </Link>
           <SearchInput />
-          <Link to={"/*"} onClick={ScrollToTop}>
+          <Link to={`/profile/${user.email}`} onClick={ScrollToTop}>
             <Avatar
               icon={<BiUser />}
               size={"md"}

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useContext, useRef } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { ArrowUpIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import {
   Alert,
@@ -16,10 +18,9 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
   Text,
+  Spinner,
 } from "@chakra-ui/react";
-import { useState, useContext, useRef } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { useAuth } from "../hooks/useAuth";
+
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -42,7 +43,7 @@ function DateConverter(string) {
 
 const UserNeedsToLogin = () => {
   const customId = "login-reminder";
-  toast.error("You need to be logged in to use this feature.", {
+  toast.error("Login required for usage of this feature", {
     position: toast.POSITION.TOP_CENTER,
     autoClose: 2000,
     toastId: customId,
@@ -104,8 +105,26 @@ const ScrollButton = () => {
 // Protected Route
 
 function ProtectedRoute({ children }) {
-  const isLoggedIn = useAuth();
-  return <>{isLoggedIn ? children : <Navigate to="/login" />}</>;
+  const { loading, user } = useContext(AuthContext);
+  // const isLoggedIn = useAuth();
+  return (
+    <>
+      {loading ? (
+        <Spinner
+          color={"red.200"}
+          emptyColor={"pink.50"}
+          size={"xl"}
+          speed={"0.7s"}
+          mt={"56"}
+          mb={"96"}
+        />
+      ) : user ? (
+        children
+      ) : (
+        <Navigate to="/login" />
+      )}
+    </>
+  );
 }
 
 //

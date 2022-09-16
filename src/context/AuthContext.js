@@ -6,20 +6,12 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../Config";
-import { ErrorAlert } from "../components/Helpers";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  AlertIcon,
-  Button,
-  CloseButton,
-} from "@chakra-ui/react";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const registerNewUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -58,8 +50,10 @@ export const AuthContextProvider = (props) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        setLoading(false);
       } else {
         setUser(null);
+        setLoading(false);
       }
     });
   };
@@ -81,7 +75,7 @@ export const AuthContextProvider = (props) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, registerNewUser, logIn, logout }}
+      value={{ user, setUser, registerNewUser, logIn, logout, loading }}
     >
       {props.children}
     </AuthContext.Provider>

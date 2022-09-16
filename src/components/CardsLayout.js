@@ -116,7 +116,7 @@ const CardsLayout = ({ movie }) => {
                 </PopoverContent>
               </Popover>
               {user && (
-                <Link to={"/profile/:user"}>
+                <Link to={`/profile/${user.email}`} state={user}>
                   <IconButton
                     icon={<AddIcon />}
                     size={"xs"}

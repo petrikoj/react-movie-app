@@ -20,7 +20,7 @@ import ViewNoMatch from "../views/ViewNoMatch";
 import { ErrorAlert, ShowAlertDialog } from "./Helpers";
 
 const LogInInput = () => {
-  const { logIn, user, error } = useContext(AuthContext);
+  const { logIn, user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -32,12 +32,7 @@ const LogInInput = () => {
   const handleLogIn = (user) => {
     logIn(email, password);
     setIsLoading(true);
-    {
-      user && navigate(-1);
-    }
-    {
-      !user && alert(error);
-    }
+    user && navigate(-1);
   };
 
   // const handleError = () => {

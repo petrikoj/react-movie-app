@@ -1,3 +1,4 @@
+import React from "react";
 import { ArrowUpIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import {
   Alert,
@@ -14,12 +15,14 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  Text,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useAuth } from "../hooks/useAuth";
 import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Replacing the Spaces in URLs //
 
@@ -38,34 +41,15 @@ function DateConverter(string) {
 
 // Alert in case of userIsLogged === false //
 
-function NeedToLoginAlert() {
-  const {
-    isOpen: isVisible,
-    onClose,
-    onOpen,
-  } = useDisclosure({ defaultIsOpen: true });
-  return isVisible ? (
-    <Alert status={"error"}>
-      <AlertIcon />
-      <Box>
-        <AlertTitle>Ooops!</AlertTitle>
-        <AlertDescription>
-          You need to be logged in order to use this feature. Do you want to log
-          in or create an account?
-        </AlertDescription>
-      </Box>
-      <CloseButton
-        alignSelf={"flex-start"}
-        position={"relative"}
-        right={"-1"}
-        top={"-1"}
-        onClick={onClose}
-      />
-    </Alert>
-  ) : (
-    <Button onClick={onOpen}>Show Alert</Button>
-  );
-}
+const UserNeedsToLogin = () => {
+  const customId = "login-reminder";
+  toast.error("You need to be logged in to use this feature.", {
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: 2000,
+    toastId: customId,
+    draggablePercent: 60,
+  });
+};
 
 // Alert Dialog
 
@@ -111,12 +95,24 @@ function ShowAlertDialog() {
 
 // Alert
 
-const ErrorAlert = ({ error }) => {
+const ErrorAlert = (error) => {
+  const [isShow, setIsShow] = useState[true];
+  const handleClose = (e) => {
+    e.preventDefault();
+    setIsShow(false);
+  };
   return (
-    <Alert status={"error"} mt={"96"}>
+    <Alert status={"error"} height={"96"}>
       <AlertIcon boxSize={"lg"} />
       <AlertTitle>{error.code}</AlertTitle>
       <AlertDescription>{error.message}</AlertDescription>
+      <CloseButton
+        position={"absolute"}
+        right={"3"}
+        top={"3"}
+        cursor={"pointer"}
+        onClick={handleClose}
+      />
     </Alert>
   );
 };
@@ -137,9 +133,9 @@ const ScrollButton = () => {
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 4500) {
+    if (scrolled > 3000) {
       setVisible(true);
-    } else if (scrolled <= 4500) {
+    } else if (scrolled <= 3000) {
       setVisible(false);
     }
   };
@@ -158,7 +154,6 @@ const ScrollButton = () => {
       icon={<ChevronUpIcon />}
       onClick={scrollToTop}
       display={visible ? "inline" : "none"}
-      // style={{ display: visible ? "inline" : "none" }}
       position={"fixed"}
       width={"16"}
       variant={"solid"}
@@ -180,15 +175,15 @@ function ProtectedRoute({ children }) {
   return <>{isLogged ? children : <Navigate to="/login" />}</>;
 }
 
-export default ProtectedRoute;
+//
 
 export {
   SpaceReplacer,
-  NeedToLoginAlert,
   DateConverter,
   ErrorAlert,
   ScrollToTop,
   ScrollButton,
   ShowAlertDialog,
   ProtectedRoute,
+  UserNeedsToLogin,
 };

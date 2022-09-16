@@ -9,6 +9,7 @@ function ViewRegistration() {
         <Text
           as={"h4"}
           fontSize={"4xl"}
+          textAlign={"center"}
           fontFamily={"body"}
           fontWeight={"thin"}
           mb={"14"}

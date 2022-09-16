@@ -21,8 +21,8 @@ import {
   PopoverCloseButton,
   PopoverAnchor,
 } from "@chakra-ui/react";
-import { AddIcon, ChatIcon } from "@chakra-ui/icons";
-import { NeedToLoginAlert, ScrollToTop } from "./Helpers";
+import { AddIcon } from "@chakra-ui/icons";
+import { ScrollToTop, UserNeedsToLogin } from "./Helpers";
 
 const CardsLayout = ({ movie }) => {
   const movieTitle = movie.title;
@@ -109,20 +109,13 @@ const CardsLayout = ({ movie }) => {
                   </PopoverBody>
                 </PopoverContent>
               </Popover>
-              {/* <Button
-                size={"xs"}
-                bg={"gray.200"}
-                color={"blackAlpha.800"}
-                onClick={NeedToLoginAlert}
-              >
-                <ChatIcon color={"blackAlpha.800"} />
-              </Button> */}
               <IconButton
+                icon={<AddIcon />}
                 size={"xs"}
                 bg={"gray.200"}
                 ariaLabel={"Add to your favorites"}
-                icon={<AddIcon />}
                 color={"blackAlpha.800"}
+                onClick={UserNeedsToLogin}
               />
             </HStack>
           </VStack>

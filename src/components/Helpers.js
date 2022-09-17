@@ -43,9 +43,21 @@ function DateConverter(string) {
 
 const UserNeedsToLogin = () => {
   const customId = "login-reminder";
-  toast.error("Login required for usage of this feature", {
+  toast.error("Login required", {
     position: toast.POSITION.TOP_CENTER,
-    autoClose: 1500,
+    autoClose: 2000,
+    toastId: customId,
+    draggablePercent: 60,
+  });
+};
+
+//
+
+const ConfirmUserLogin = () => {
+  const customId = "login-confirmed";
+  toast.success("Login successful", {
+    position: toast.POSITION.BOTTOM_CENTER,
+    autoClose: 2000,
     toastId: customId,
     draggablePercent: 60,
   });
@@ -55,9 +67,9 @@ const UserNeedsToLogin = () => {
 
 const ConfirmUserLogout = () => {
   const customId = "logout-confirmed";
-  toast.success("Logout successful!", {
-    position: toast.POSITION.TOP_CENTER,
-    autoClose: 1200,
+  toast.success("Logout successful", {
+    position: toast.POSITION.BOTTOM_CENTER,
+    autoClose: 2000,
     toastId: customId,
     draggablePercent: 60,
   });
@@ -149,4 +161,5 @@ export {
   ScrollButton,
   UserNeedsToLogin,
   ConfirmUserLogout,
+  ConfirmUserLogin,
 };

@@ -6,7 +6,11 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../Config";
-import { ConfirmUserLogout, UserNeedsToLogin } from "../components/Helpers";
+import {
+  ConfirmUserLogin,
+  ConfirmUserLogout,
+  UserNeedsToLogin,
+} from "../components/Helpers";
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
@@ -40,6 +44,7 @@ export const AuthContextProvider = (props) => {
         console.log("User:", user);
         setUser(user);
         redirect(-1);
+        ConfirmUserLogin();
       })
       .catch((error) => {
         const errorCode = error.code;

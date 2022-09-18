@@ -28,18 +28,10 @@ const LogInInput = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogIn = (user) => {
+  const handleLogIn = () => {
     logIn(email, password);
     setIsLoading(true);
-    // user && navigate(-1);
   };
-
-  // const handleError = () => {
-  //   alert(error);
-  //   setIsLoading(false);
-  //   setEmail("");
-  //   setPassword("");
-  // };
 
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {

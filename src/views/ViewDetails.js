@@ -48,6 +48,19 @@ const ViewDetails = () => {
         >
           {location.state.title}
         </Text>
+        {
+          <Text
+            as={"h4"}
+            textAlign={"center"}
+            fontSize={"large"}
+            letterSpacing={"wide"}
+            color={"blackAlpha.800"}
+          >
+            {location.state.title !== location.state.original_title &&
+              location.state.original_title}
+          </Text>
+        }
+
         <Image
           src={`https://image.tmdb.org/t/p/w300_and_h450_face/${location.state.poster_path}`}
           alt={location.state.title}

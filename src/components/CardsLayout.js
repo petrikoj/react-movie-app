@@ -10,7 +10,6 @@ import {
   VStack,
   HStack,
   Tag,
-  Tooltip,
   Popover,
   PopoverTrigger,
   PopoverContent,

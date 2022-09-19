@@ -10,9 +10,7 @@ import {
   Icon,
   Text,
   Avatar,
-  Container,
   Spacer,
-  Divider,
 } from "@chakra-ui/react";
 import { FiSend } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
@@ -48,9 +46,6 @@ const CommentSection = () => {
       date: new Date().toLocaleDateString(),
       user: user.email,
     };
-
-    console.log("My message object:", messageObject);
-    console.log("Current movie ID:", location.state.id);
     try {
       const q = query(
         collection(db, "comments"),

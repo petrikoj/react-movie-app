@@ -82,7 +82,6 @@ const ViewDetails = () => {
           fontSize={"larger"}
           lineHeight={"8"}
           color={"blackAlpha.800"}
-          // textAlign={"justify"}
         >
           {location.state.overview}
         </Text>

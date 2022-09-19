@@ -25,7 +25,7 @@ import { GoGear } from "react-icons/go";
 
 function ViewProfile() {
   const { user } = useContext(AuthContext);
-  // const location = useLocation();
+
   return user !== null ? (
     <>
       <Box mt={"36"} mb={"14"}>
@@ -54,10 +54,10 @@ function ViewProfile() {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <p>one!</p>
+            <p>Under construction</p>
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            <p>Under construction</p>
           </TabPanel>
         </TabPanels>
       </Tabs>

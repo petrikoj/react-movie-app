@@ -9,14 +9,8 @@ import {
   Center,
   Box,
 } from "@chakra-ui/react";
-import {
-  EmailIcon,
-  ViewIcon,
-  ViewOffIcon,
-  WarningTwoIcon,
-} from "@chakra-ui/icons";
+import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import ViewNoMatch from "../views/ViewNoMatch";
 
 const LogInInput = () => {
   const { logIn, user } = useContext(AuthContext);

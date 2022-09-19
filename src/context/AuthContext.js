@@ -6,11 +6,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../Config";
-import {
-  ConfirmUserLogin,
-  ConfirmUserLogout,
-  UserNeedsToLogin,
-} from "../components/Helpers";
+import { ConfirmUserLogin, ConfirmUserLogout } from "../components/Helpers";
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
@@ -23,17 +19,13 @@ export const AuthContextProvider = (props) => {
   const registerNewUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        console.log("User:", user);
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Error:", error);
         alert(error.message);
-        // ..
       });
   };
 
@@ -41,7 +33,6 @@ export const AuthContextProvider = (props) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("User:", user);
         setUser(user);
         redirect(-1);
         ConfirmUserLogin();
@@ -51,7 +42,6 @@ export const AuthContextProvider = (props) => {
         const errorMessage = error.message;
         console.log("Error:", error);
         alert(error.message);
-        // ErrorAlert(error);
       });
   };
 

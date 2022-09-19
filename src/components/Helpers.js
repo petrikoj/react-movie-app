@@ -1,31 +1,13 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useAuth } from "../hooks/useAuth";
-import { ArrowUpIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  AlertIcon,
-  Button,
-  CloseButton,
-  Box,
-  IconButton,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-  Text,
-  Spinner,
-  useToast,
-} from "@chakra-ui/react";
+import { ChevronUpIcon } from "@chakra-ui/icons";
+import { IconButton, Spinner } from "@chakra-ui/react";
 
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-// Replacing the Spaces in URLs //
+// Replacing the Spaces in URLs
 
 function SpaceReplacer(string) {
   let addHyphens = string.replace(" ", "-");
@@ -40,7 +22,7 @@ function DateConverter(string) {
   return newDate;
 }
 
-// Alert in case of userIsLogged === false //
+// Login reminder toast
 
 const UserNeedsToLogin = () => {
   const customId = "login-reminder";
@@ -52,7 +34,7 @@ const UserNeedsToLogin = () => {
   });
 };
 
-//
+// Login  successful toast
 
 const ConfirmUserLogin = () => {
   const customId = "login-confirmed";
@@ -64,7 +46,7 @@ const ConfirmUserLogin = () => {
   });
 };
 
-// Logout successful
+// Logout successful toast
 
 const ConfirmUserLogout = () => {
   const customId = "logout-confirmed";
@@ -131,7 +113,7 @@ const ScrollButton = () => {
 
 function ProtectedRoute({ children }) {
   const { loading, user } = useContext(AuthContext);
-  // const isLoggedIn = useAuth();
+
   return (
     <>
       {loading ? (

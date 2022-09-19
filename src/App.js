@@ -16,10 +16,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const contextClass = {
-    success: "green.200",
-    error: "red.200",
-  };
   return (
     <div className="App">
       <AuthContextProvider>

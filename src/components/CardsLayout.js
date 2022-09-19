@@ -1,5 +1,8 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
+import { useAuth } from "../hooks/useAuth";
 import {
   Container,
   Box,
@@ -9,22 +12,15 @@ import {
   Text,
   VStack,
   HStack,
-  Tag,
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverHeader,
   PopoverBody,
-  PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { ScrollToTop, UserNeedsToLogin } from "./Helpers";
-import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
-import { useAuth } from "../hooks/useAuth";
 
 const CardsLayout = ({ movie }) => {
   const movieTitle = movie.title;
@@ -90,7 +86,6 @@ const CardsLayout = ({ movie }) => {
                 <PopoverContent>
                   <PopoverArrow bg={"gray.200"} />
                   <PopoverCloseButton size={"md"} color={"red.500"} />
-                  {/* <PopoverHeader>What</PopoverHeader> */}
                   <PopoverBody
                     bg={"gray.200"}
                     w={"100%"}

@@ -3,7 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import {
   InputGroup,
   Input,
-  InputLeftElement,
+  InputRightElement,
   VStack,
   Button,
   Center,
@@ -42,7 +42,7 @@ const LogInInput = () => {
       <Center>
         <VStack spacing={"4"}>
           <InputGroup>
-            <InputLeftElement
+            <InputRightElement
               pointerEvents="none"
               color="red.200"
               children={<EmailIcon />}
@@ -69,7 +69,7 @@ const LogInInput = () => {
               focusBorderColor={"teal.200"}
               onChange={handlePasswordChange}
             />
-            <InputLeftElement>
+            <InputRightElement>
               <Button bg={"none"} variant={"unstyled"} onClick={handleShow}>
                 {show ? (
                   <ViewIcon color={"red.200"} />
@@ -77,7 +77,7 @@ const LogInInput = () => {
                   <ViewOffIcon color={"red.200"} />
                 )}
               </Button>
-            </InputLeftElement>
+            </InputRightElement>
           </InputGroup>
           <Button
             onClick={handleLogIn}
@@ -87,6 +87,7 @@ const LogInInput = () => {
             bg={"red.200"}
             size={"sm"}
             shadow={"sm"}
+            w={["80", "24"]}
           >
             Log in
           </Button>
